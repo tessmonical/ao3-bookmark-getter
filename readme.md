@@ -1,6 +1,7 @@
 # AO3 bookmark grabber
 
-This python script is able to provide you with a list of links (just urls, to start with) of every public bookmark you have on AO3.
+This python script is able to provide you with a list of links (just urls, to start with) of every public bookmark you have on [Archive Of Our Own](archiveofourown.org).
+
 
 ## That's great, but what is this useful for?
 
@@ -40,6 +41,10 @@ If all goes well, this should print out a list of urls (if you have a LOT of boo
 ## How can I get my private bookmarks, though?
 
 I haven't figured that one out yet. Sorry! I put this together in an evening and it's all I've got for now.
+
+## What about serieses that I've bookmarked
+
+I'll add that soon when I have time- shouldn't be too hard.
 
 ## It stopped working!
 
