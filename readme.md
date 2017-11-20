@@ -1,6 +1,6 @@
 # AO3 bookmark grabber
 
-This python script is able to provide you with a list of links (just urls, to start with) of every public bookmark you have on [Archive Of Our Own](archiveofourown.org).
+This python script is able to provide you with a list of links (just urls, to start with) of every public bookmark you have on [Archive Of Our Own](https://archiveofourown.org).
 
 
 ## That's great, but what is this useful for?
