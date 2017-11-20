@@ -27,11 +27,6 @@ if (password != ''):
     the_page = response.read()
     print(the_page)
 
-# url = 'http://archiveofourown.org/user_sessions/'
-# data = urllib.urlencode({username: username, password:password})
-# with urllib2.urlopen(url=url, data=data).read() as content:
-#   print(content)
-
 
 
 while not end:
