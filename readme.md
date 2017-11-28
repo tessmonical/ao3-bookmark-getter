@@ -1,7 +1,6 @@
 # AO3 bookmark grabber
 
-This python script is able to provide you with a list of links (just urls, to start with) of every public bookmark you have on [Archive Of Our Own](https://archiveofourown.org).
-
+This python script is able to provide you with a list of links (just urls, to start with) of every bookmark you have on [Archive Of Our Own](https://archiveofourown.org).
 
 ## That's great, but what is this useful for?
 
@@ -19,8 +18,13 @@ Python 3 can be found at [python.org](https://www.python.org).
 
 You will need Python 3 installed. This is installed by default with MacOS, but I would recommend installing the latest version- it'll make installing the SSL certificate easier in the next step.
 
-If you're using Windows you will definately need to install Python 3 to be able to use this.
+If you're using Windows you will definitely need to install Python 3 to be able to use this.
 
+# Install "Requests" module
+
+I tried to use as few things that weren't built-in to Python as possible, but I needed this one. It let me easily persist cookies so that you can log in and grab your private bookmarks.
+
+Open up your terminal. Type `pip3 install requests` to install it. Wait a second or two for it to finish
 
 ### Install SSL certificates
 
@@ -30,21 +34,19 @@ If you're on Windows, I'm not sure where this command might be. I don't have a P
 
 ### Run the command
 
-Finally, open up your terminal. Navigate to where you've downloaded the files from this repository.
+Open up your terminal, if it isn't already open. Navigate to where you've downloaded the files from this repository.
 
-(On Mac you can probably type the command `cd ~/Downloads` to get there, assuming you put it in the downloads folder).
+(On Mac you can probably type the command `cd Downloads` to get there, assuming you put it in the downloads folder).
 
-run the command `python3 ao3downloader.py username` where you type your username instead of "username".
+run the command `python3 ao3downloader.py username password` where you type your username instead of "username" and password instead of "password".
+
+(If you just want your public bookmarks, don't type your password, and it won't log you in to fetch the private ones)
 
 If all goes well, this should print out a list of urls (if you have a LOT of bookmarks,give it a minute or two). Those URLs are every one of your bookmarks. You can copy and paste them into other programs or files.
 
-## How can I get my private bookmarks, though?
-
-I haven't figured that one out yet. Sorry! I put this together in an evening and it's all I've got for now.
-
 ## What about serieses that I've bookmarked
 
-I'll add that soon when I have time- shouldn't be too hard.
+I'll add that soon when I have time- shouldn't be too hard. I just have to modify a couple lines, I think.
 
 ## It stopped working!
 
