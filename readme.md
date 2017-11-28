@@ -20,7 +20,7 @@ You will need Python 3 installed. This is installed by default with MacOS, but I
 
 If you're using Windows you will definitely need to install Python 3 to be able to use this.
 
-# Install "Requests" module
+### Install "Requests" module
 
 I tried to use as few things that weren't built-in to Python as possible, but I needed this one. It let me easily persist cookies so that you can log in and grab your private bookmarks.
 
