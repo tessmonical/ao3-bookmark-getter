@@ -44,9 +44,9 @@ run the command `python3 ao3downloader.py username password` where you type your
 
 If all goes well, this should print out a list of urls (if you have a LOT of bookmarks,give it a minute or two). Those URLs are every one of your bookmarks. You can copy and paste them into other programs or files.
 
-## What about serieses that I've bookmarked
+## What about series that I've bookmarked
 
-I'll add that soon when I have time- shouldn't be too hard. I just have to modify a couple lines, I think.
+It asks you if you want those, now! When prompted, type "y" to get series. Type anything else to just get non-series works.
 
 ## It stopped working!
 

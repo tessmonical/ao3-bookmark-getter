@@ -12,6 +12,9 @@ if len(sys.argv) > 2:
 currentPage = 1 #the page of bookmarks to start with
 end = False
 
+raw_series = input("Would you like to output the URLs of series? type y for yes\n")
+series = (raw_series == 'y')
+
 #login stuff
 if (password != ''):
   # get an "authenticity token"
@@ -45,21 +48,31 @@ if (password != ''):
 #actually grab all the bookmarks!
 print('fetching urls')
 number_urls = 0
+
+# finds things that look like
+# <a href="/works/#"> where # is a number
+p_works = '<a href="\/works\/(\d+)">'
+p_series= '<a href="\/series\/(\d+)">'
+
 while not end:
   # gets the current page from your bookmarks
   res = session.get('http://archiveofourown.org/users/'+username+'/bookmarks?page='+str(currentPage))
   html = res.text
-  # finds things that look like
-  # <a href="/works/#"> where # is a number
-  p_works = '<a href="\/works\/(\d+)">'
-
   matches = re.findall(p_works, html)
+
+
   #if there are no matches we've reached the end
   if len(matches) < 1:
       end = True
   for match in matches:
     print('http://archiveofourown.org/works/' + match)
     number_urls += 1
+  if(series):
+    matches = re.findall(p_works, html)
+    for match in matches:
+      print('http://archiveofourown.org/series/' + match)
+      number_urls += 1
+
   currentPage += 1
 
 print("Finished! with "+str(number_urls)+" urls")
