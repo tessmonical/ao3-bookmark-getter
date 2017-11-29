@@ -2,7 +2,6 @@ import re
 import sys
 import json
 import requests
-from bs4 import BeautifulSoup
 
 session = requests.Session() #stores cookies so that we can login
 
