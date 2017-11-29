@@ -2,6 +2,7 @@ import re
 import sys
 import json
 import requests
+from bs4 import BeautifulSoup
 
 session = requests.Session() #stores cookies so that we can login
 
@@ -10,7 +11,6 @@ password = ""
 if len(sys.argv) > 2:
   password = sys.argv[2] #your password
 currentPage = 1 #the page of bookmarks to start with
-end = False
 
 raw_series = input("Would you like to output the URLs of series? type y for yes\n")
 series = (raw_series == 'y')
@@ -51,14 +51,15 @@ number_urls = 0
 
 # finds things that look like
 # <a href="/works/#"> where # is a number
-p_works = '<a href="\/works\/(\d+)">'
-p_series= '<a href="\/series\/(\d+)">'
+p_works = """<a href=\"/works/(\d+)\">.*?</a>.*?by"""
+p_series = """<a href=\"/series/(\d+)\">.*?</a>.*?by"""
 
+end = False
 while not end:
   # gets the current page from your bookmarks
   res = session.get('http://archiveofourown.org/users/'+username+'/bookmarks?page='+str(currentPage))
   html = res.text
-  matches = re.findall(p_works, html)
+  matches = re.findall(p_works, html, re.DOTALL)
 
 
   #if there are no matches we've reached the end
