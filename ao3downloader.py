@@ -50,15 +50,15 @@ number_urls = 0
 
 # finds things that look like
 # <a href="/works/#"> where # is a number
-p_works = """<a href=\"/works/(\d+)\">.*?</a>.*?by"""
-p_series = """<a href=\"/series/(\d+)\">.*?</a>.*?by"""
+p_works  = """<a href=\"/works/(\d+)\">[^<>]+</a>\n\s*?by"""
+p_series = """<a href=\"/series/(\d+)\">[^<>]+</a>\n\s*?by"""
 
 end = False
 while not end:
   # gets the current page from your bookmarks
   res = session.get('http://archiveofourown.org/users/'+username+'/bookmarks?page='+str(currentPage))
   html = res.text
-  matches = re.findall(p_works, html, re.DOTALL)
+  matches = re.findall(p_works, html)
 
 
   #if there are no matches we've reached the end
@@ -68,9 +68,9 @@ while not end:
     print('http://archiveofourown.org/works/' + match)
     number_urls += 1
   if(series):
-    matches = re.findall(p_works, html)
-    for match in matches:
-      print('http://archiveofourown.org/series/' + match)
+    matches_s = re.findall(p_series, html)
+    for match_s in matches_s:
+      print('http://archiveofourown.org/series/' + match_s)
       number_urls += 1
 
   currentPage += 1
