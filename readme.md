@@ -1,6 +1,6 @@
-# AO3 bookmark grabber
+# AO3 bookmark getter
 
-This python script is able to provide you with a list of links (just urls, to start with) of every bookmark you have on [Archive Of Our Own](https://archiveofourown.org).
+This python script is able to provide you with a list of links to every bookmark you have on [Archive Of Our Own](https://archiveofourown.org).
 
 ## That's great, but what is this useful for?
 
@@ -42,13 +42,13 @@ run the command `python3 ao3downloader.py username password` where you type your
 
 (If you just want your public bookmarks, don't type your password, and it won't log you in to fetch the private ones)
 
-If all goes well, this should print out a list of urls (if you have a LOT of bookmarks,give it a minute or two). Those URLs are every one of your bookmarks. You can copy and paste them into other programs or files.
+It will prompt you to ask if you would like to include series and if you would like metadata (just titles for now) in addition to URLs. If you want to import URLs into calibre, don't get metadata- you just want a list of URLs. If you are using some other tool, the title might be helpful.
 
-## What about series that I've bookmarked
+If all goes well, this should print out a list of urls for each work/series you have bookmarked. Those URLs are every one of your bookmarks. You can copy and paste them into other programs or files.
 
-It asks you if you want those, now! When prompted, type "y" to get series. Type anything else to just get non-series works.
+## Limitations
+Currently, because of the way this script searches for titles (regular expressions, instead of actually parsing HTML), any works with titles that contain the characters "<" or ">" in them won't be included. If you have works with funky titles, you may have to download those ones manually.
 
 ## It stopped working!
 
 Uh-oh! Let me know ASAP if this happens. Use the "Issues" tab above to leave a bug report. I'll fix it as soon as I'm able.
-

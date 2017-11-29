@@ -14,6 +14,16 @@ currentPage = 1 #the page of bookmarks to start with
 raw_series = input("Would you like to output the URLs of series? type y for yes\n")
 series = (raw_series == 'y')
 
+raw_metadata_q = input("Would you like metadata in addition to URLs? type y for yes\n")
+metadata_q = (raw_metadata_q == 'y')
+
+# a little function to make it easier to print metadata later
+def print_with_metadata(url, metadata):
+  print('title: ' + metadata['title'])
+  print('url: '+ url)
+  print('')
+
+
 #login stuff
 if (password != ''):
   # get an "authenticity token"
@@ -50,8 +60,8 @@ number_urls = 0
 
 # finds things that look like
 # <a href="/works/#"> where # is a number
-p_works  = """<a href=\"/works/(\d+)\">[^<>]+</a>\n\s*?by"""
-p_series = """<a href=\"/series/(\d+)\">[^<>]+</a>\n\s*?by"""
+p_works  = """<a href=\"/works/(\d+)\">([^<>]+)</a>\n\s*?by"""
+p_series = """<a href=\"/series/(\d+)\">([^<>]+)</a>\n\s*?by"""
 
 end = False
 while not end:
@@ -65,12 +75,18 @@ while not end:
   if len(matches) < 1:
       end = True
   for match in matches:
-    print('http://archiveofourown.org/works/' + match)
+    if metadata_q:
+      print_with_metadata('http://archiveofourown.org/works/' + match[0], {'title': match[1]})
+    else:
+      print('http://archiveofourown.org/works/' + match[0])
     number_urls += 1
   if(series):
     matches_s = re.findall(p_series, html)
     for match_s in matches_s:
-      print('http://archiveofourown.org/series/' + match_s)
+      if metadata_q:
+        print_with_metadata('http://archiveofourown.org/series/' + match_s[0], {'title': match_s[1]})
+      else:
+        print('http://archiveofourown.org/series/' + match_s[0])
       number_urls += 1
 
   currentPage += 1
