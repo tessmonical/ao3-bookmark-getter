@@ -10,8 +10,6 @@ So, once you have a list of URLs, you can use other tools to download epubs of e
 
 So if you're not tech-savvy this may be hard, fair warning. I had all these tools installed already. I've done my best to make this easy but installing stuff is always a pain.
 
-Warning: I have not tested this on Windows and am not familiar enough with the environment to help much. If you can get Python installed and the correct certificates installed, you should be able to run this, but I will be of minimal help getting that far.
-
 ### Install Python 3
 
 Python 3 can be found at [python.org](https://www.python.org).
@@ -31,9 +29,9 @@ On Windows, type `py -m pip install requests` to install it. Wait a second or tw
 
 In addition, once you have installed Python, on Mac you will need to install certificates in order to allow Python to make web requests. On Mac, go into your Applications folder and find the Python 3.x.x folder (the x.x will change but will be numbers). There will be a file named "Install Certificates.command" in that folder. Double click it to run it.
 
-If you're on Windows, you don't need to do this.
+If you're on Windows, you don't need to do this (probably).
 
-### Run the command
+### Run the code
 
 Open up your terminal, if it isn't already open. Navigate to where you've downloaded the files from this repository.
 
