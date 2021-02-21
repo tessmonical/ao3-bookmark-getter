@@ -33,12 +33,13 @@ if (password != ''):
   authenticity_token = jsonThing.json()['token']
 
   #log in
-  url = 'https://archiveofourown.org/user_sessions/'
+  url = 'https://archiveofourown.org/users/login'
   data = {
-    'user_session[login]': username,
-    'user_session[password]': password,
+    'user[login]': username,
+    'user[password]': password,
     'authenticity_token': authenticity_token #if you don't pass this along nothing works
   }
+  
   headers = {
     "Accept":"text/html,*/*",
     "Host":"archiveofourown.org",
