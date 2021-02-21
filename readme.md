@@ -49,3 +49,6 @@ If all goes well, this should print out a list of urls for each work/series you 
 
 ## Limitations
 Currently, because of the way this script searches for titles (regular expressions, instead of actually parsing HTML), any works with titles that contain the characters "<" or ">" in them won't be included. If you have works with funky titles, you may have to download those ones manually.
+
+##Using with Calibre
+Here is a tutorial to use Calibre and a plugin to turn this list of URLs into a bunch of ebook or mobi files. [Tutorial](https://www.reddit.com/r/FanFiction/comments/3pv06c/meta_a_tutorial_on_using_calibre_to_save_and_read/)
