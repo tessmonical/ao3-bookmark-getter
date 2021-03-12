@@ -23,7 +23,7 @@ Open up your terminal.
 
 On Mac, type `pip3 install requests ` to install it. Wait a second or two for it to finish. 
 
-On Windows, type `py -m pip install requests` to install it. Wait a second or two for it to finish.
+On Windows, type `python pip install requests` to install it. Wait a second or two for it to finish.
 
 ### Install SSL certificates
 
