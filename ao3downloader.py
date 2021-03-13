@@ -2,6 +2,7 @@ import re
 import sys
 import json
 import requests
+import time
 
 session = requests.Session() #stores cookies so that we can login
 
@@ -39,7 +40,7 @@ if (password != ''):
     'user[password]': password,
     'authenticity_token': authenticity_token #if you don't pass this along nothing works
   }
-  
+
   headers = {
     "Accept":"text/html,*/*",
     "Host":"archiveofourown.org",
@@ -70,6 +71,12 @@ while not end:
   res = session.get('http://archiveofourown.org/users/'+username+'/bookmarks?page='+str(currentPage))
   html = res.text
   matches = re.findall(p_works, html)
+
+
+  if ((number_urls % 10) == 0): #this is a potential fix for large ao3 libraries running into cl
+    time.sleep(3)
+    if ((number_urls % 100) == 0):
+      time.sleep(15)
 
 
   #if there are no matches we've reached the end
