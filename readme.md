@@ -45,6 +45,8 @@ On Windows, run the command `ao3downloader.py username password` where you type 
 
 It will prompt you to ask if you would like to include series and if you would like metadata (just titles for now) in addition to URLs. If you want to import URLs into calibre, don't get metadata- you just want a list of URLs. If you are using some other tool, the title might be helpful.
 
+If you have more than 400 or so works, ao3 might have trouble processing the high volume of requests. It will ask you if you would like to add a pause every 10 works and 100 works. 30 seconds every 10 and 100 every 100 was recommended by one user with 3000 bookmarks, but mess around and find what works for you.
+
 If all goes well, this should print out a list of urls for each work/series you have bookmarked. Those URLs are every one of your bookmarks. You can copy and paste them into other programs or files.
 
 ## Limitations
