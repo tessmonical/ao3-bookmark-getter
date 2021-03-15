@@ -18,6 +18,14 @@ series = (raw_series == 'y')
 raw_metadata_q = input("Would you like metadata in addition to URLs? type y for yes\n")
 metadata_q = (raw_metadata_q == 'y')
 
+delay_every_10 = 0
+delay_every_100 = 0
+
+delay_enabled = input("Would you like to add a pause every 10 seconds + every 100 seconds? this might be useful if you have more than ~300 bookmarks type y for yes\n")
+if (delay_enabled == 'y'):
+    delay_every_10 = int(input("delay every 10 works (in seconds)\n"))
+    delay_every_100 = int(input("delay every 100 works (in seconds)\n"))
+
 # a little function to make it easier to print metadata later
 def print_with_metadata(url, metadata):
   print('title: ' + metadata['title'])
@@ -74,9 +82,9 @@ while not end:
 
 
   if ((number_urls % 10) == 0): #this is a potential fix for large ao3 libraries running into cl
-    time.sleep(3)
+    time.sleep(delay_every_10)
     if ((number_urls % 100) == 0):
-      time.sleep(15)
+      time.sleep(delay_every_100)
 
 
   #if there are no matches we've reached the end
