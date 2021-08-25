@@ -70,6 +70,7 @@ number_urls = 0
 
 # finds things that look like
 # <a href="/works/#"> where # is a number
+#TODO if i want to grab external bookmarks, this needs to be updated
 p_works  = """<a href=\"/works/(\d+)\">([^<>]+)</a>\n\s*?by"""
 p_series = """<a href=\"/series/(\d+)\">([^<>]+)</a>\n\s*?by"""
 
@@ -92,6 +93,7 @@ while not end:
       end = True
   for match in matches:
     if metadata_q:
+      #TODO update to work with external bookmarks
       print_with_metadata('http://archiveofourown.org/works/' + match[0], {'title': match[1]})
     else:
       print('http://archiveofourown.org/works/' + match[0])
