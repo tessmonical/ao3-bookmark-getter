@@ -21,7 +21,7 @@ If you're using Windows you will definitely need to install Python 3 to be able 
 ### Install "Requests" module
 Open up your terminal.
 
-On Mac, type `pip3 install requests ` to install it. Wait a second or two for it to finish. 
+On Mac, type `pip3 install requests ` to install it. Wait a second or two for it to finish.
 
 On Windows, type `python pip install requests` to install it. Wait a second or two for it to finish.
 
@@ -43,7 +43,7 @@ On Windows, run the command `ao3downloader.py username password` where you type 
 
 (If you just want your public bookmarks, don't type your password, and it won't log you in to fetch the private ones)
 
-It will prompt you to ask if you would like to include series and if you would like metadata (just titles for now) in addition to URLs. If you want to import URLs into calibre, don't get metadata- you just want a list of URLs. If you are using some other tool, the title might be helpful.
+It will prompt you to ask if you would like to include series and if you would like titles to be printed in addition to URLs. If you want to import URLs into calibre, don't get titles- you just want a list of URLs. If you are using some other tool, the title might be helpful.
 
 If you have more than 400 or so works, ao3 might have trouble processing the high volume of requests. It will ask you if you would like to add a pause every 10 works and 100 works. 30 seconds every 10 and 100 every 100 was recommended by one user with 3000 bookmarks, but mess around and find what works for you.
 

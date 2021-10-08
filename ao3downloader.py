@@ -15,7 +15,7 @@ currentPage = 1 #the page of bookmarks to start with
 raw_series = input("Would you like to output the URLs of series? type y for yes\n")
 series = (raw_series == 'y')
 
-raw_metadata_q = input("Would you like metadata in addition to URLs? type y for yes\n")
+raw_metadata_q = input("Would you like titles in addition to URLs? type y for yes\n")
 metadata_q = (raw_metadata_q == 'y')
 
 delay_every_10 = 0
