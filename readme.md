@@ -6,6 +6,8 @@ This python script is able to provide you with a list of links to every bookmark
 
 So, once you have a list of URLs, you can use other tools to download epubs of each of those files. I use a combination of [Calibre](https://calibre-ebook.com/download), which is a free ebook reading program, and a plugin that you can install for it, called FanFicFare (installed from the plugins menu of Calibre). With FanficFare, you give it a list of urls and it will download ebooks from each url. It works with tons of fanfic sites including AO3, so it's a great way to back up your favorite works for later (and read them on kindle, too!) [Here's a tutorial on how to do this.](https://www.reddit.com/r/FanFiction/comments/3pv06c/meta_a_tutorial_on_using_calibre_to_save_and_read/)
 
+I might add the ability to download epubs or pdfs of everything you've bookmarked in a future update - I'm already planning on doing a big rewrite at some point to improve speed.
+
 ## How do I use it?
 
 So if you're not tech-savvy this may be hard, fair warning. I had all these tools installed already. I've done my best to make this easy but installing stuff is always a pain.
