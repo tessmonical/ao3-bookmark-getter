@@ -49,7 +49,7 @@ It will prompt you to ask if you would like to include series and if you would l
 
 **If you select that you would like to include metadata, it will take significantly longer, and may even give you a warning. This is normal -- just leave it alone for a while. In the future, I want to rewrite the script so it doesn't take the absurd amount of time it currently does when printing with metadata**
 
-If you have more than 400 or so works, ao3 might have trouble processing the high volume of requests. It will ask you if you would like to add a pause every 10 works and 100 works. 30 seconds every 10 and 200 every 100 was recommended by one user with 3000 bookmarks, but mess around and find what works for you.
+If you have more than 400 or so works, ao3 might have trouble processing the high volume of requests. It will ask you if you would like to add a pause every 10 works and 100 works. 10 seconds every 10 and 80 every 100 is what works for me, but mess around and find what works for you.
 
 If all goes well, this should print out a list of urls for each work/series you have bookmarked. Those URLs are every one of your bookmarks. You can copy and paste them into other programs or files.
 
