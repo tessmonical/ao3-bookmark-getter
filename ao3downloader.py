@@ -3,6 +3,7 @@ import sys
 import json
 import requests
 import time
+import AO3
 
 session = requests.Session() #stores cookies so that we can login
 
@@ -15,23 +16,30 @@ currentPage = 1 #the page of bookmarks to start with
 raw_series = input("Would you like to output the URLs of series? type y for yes\n")
 series = (raw_series == 'y')
 
-raw_metadata_q = input("Would you like titles in addition to URLs? type y for yes\n")
+raw_metadata_q = input("Would you like metadata in addition to URLs? type y for yes\n")
 metadata_q = (raw_metadata_q == 'y')
 
 delay_every_10 = 0
 delay_every_100 = 0
 
-delay_enabled = input("Would you like to add a pause every 10 seconds + every 100 seconds? this might be useful if you have more than ~300 bookmarks type y for yes\n")
+delay_enabled = input("Would you like to add a pause every 10 seconds + every 100 seconds? this might be useful if you get a rate limited error.\nif you are retreving metadata, this is needed")
+
 if (delay_enabled == 'y'):
     delay_every_10 = int(input("delay every 10 works (in seconds)\n"))
     delay_every_100 = int(input("delay every 100 works (in seconds)\n"))
 
 # a little function to make it easier to print metadata later
-def print_with_metadata(url, metadata):
-  print('title: ' + metadata['title'])
+def print_with_metadata(url, metadata, workid):
+  titleprint = 'title: ' + metadata['title']
+  #TODO add a print statement for the fandom
+  fandomprint = 'fandoms: ' + ' '.join(AO3.Work(workid, session=ao3_session, load_chapters=False).fandoms)
+
+  print(titleprint.encode(encoding='utf-8', errors='replace'))
+  print(fandomprint.encode(encoding='utf-8', errors='replace')) #this is necessary to handle katakana
   print('url: '+ url)
   print('')
 
+ao3_session = AO3.Session(username, password) #get a session object compatable with the AO3 library
 
 #login stuff
 if (password != ''):
@@ -70,16 +78,17 @@ number_urls = 0
 
 # finds things that look like
 # <a href="/works/#"> where # is a number
-#TODO if i want to grab external bookmarks, this needs to be updated
 p_works  = """<a href=\"/works/(\d+)\">([^<>]+)</a>\n\s*?by"""
 p_series = """<a href=\"/series/(\d+)\">([^<>]+)</a>\n\s*?by"""
+#p_fandoms =  """<a href=\"/tags/([^<>])/works\">([^<>]+)</a>\n\s*?&nbsp""" #TODO FIX. this regex would work if there's only one fandom, problem is there can be as many as they want per work.
 
 end = False
 while not end:
   # gets the current page from your bookmarks
   res = session.get('http://archiveofourown.org/users/'+username+'/bookmarks?page='+str(currentPage))
   html = res.text
-  matches = re.findall(p_works, html)
+  matches = re.findall(p_works, html) #this is what pulls the URL and the title. TODO update this if i want to get the fandom
+  #fandoms = re.findall(p_fandoms, html)
 
 
   if ((number_urls % 10) == 0): #this is a potential fix for large ao3 libraries running into cl
@@ -93,8 +102,10 @@ while not end:
       end = True
   for match in matches:
     if metadata_q:
-      #TODO update to work with external bookmarks
-      print_with_metadata('http://archiveofourown.org/works/' + match[0], {'title': match[1]})
+        #TODO update htis line to support printing the fandom
+
+      #Match[0] is a WorkID
+      print_with_metadata('http://archiveofourown.org/works/' + match[0], {'title': match[1]}, match[0])
     else:
       print('http://archiveofourown.org/works/' + match[0])
     number_urls += 1
@@ -102,7 +113,8 @@ while not end:
     matches_s = re.findall(p_series, html)
     for match_s in matches_s:
       if metadata_q:
-        print_with_metadata('http://archiveofourown.org/series/' + match_s[0], {'title': match_s[1]})
+          #TODO update this line to support pringint the fandom
+        print_with_metadata('http://archiveofourown.org/series/' + match_s[0], {'title': match_s[1]}, match[0])
       else:
         print('http://archiveofourown.org/series/' + match_s[0])
       number_urls += 1
