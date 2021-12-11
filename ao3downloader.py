@@ -32,26 +32,33 @@ if (delay_enabled == 'y'):
 def print_with_metadata_works(url, metadata, workid):
   titleprint = 'title: ' + metadata['title']
   #TODO add a print statement for the fandom
-  work = AO3.Work(workid, session=ao3_session, load_chapters=False)
-  fandomprint = 'fandoms: ' + ' | '.join(work.fandoms)
+  try:
+    work = AO3.Work(workid, session=ao3_session, load_chapters=False)
+    fandomprint = 'fandoms: ' + ' | '.join(work.fandoms)
 
-  print(titleprint.encode(encoding='ascii', errors='replace'))
-  print("word count: " + str(work.words))
-  print(fandomprint.encode(encoding='ascii', errors='replace')) #this is necessary to handle katakana
-  print('url: '+ url, flush=True)
+    print(titleprint.encode(encoding='ascii', errors='replace')[2:-1]) #the [2:] is to slice off a bit that is added when you encode a string.
+    print("word count: " + str(work.words))
+    print(fandomprint.encode(encoding='ascii', errors='replace')[2:-1]) #this is necessary to handle katakana
+    print('url: '+ url, flush=True)
+  except AttributeError:
+    print('girl help, something went wrong')
+
   print('')
 
 def print_with_metadata_series(url, metadata, seriesid):
   titleprint = 'title: ' + metadata['title']
    #TODO add a print statement for the fandom
-  worklist = AO3.Series(seriesid, session=ao3_session, load=False).work_list
-  workexample = worklist[0].fandoms
-  fandomprint = 'fandoms: ' + ' | '.join(workexample)
+  try:
+      worklist = AO3.Series(seriesid, session=ao3_session, load=False).work_list
+      workexample = worklist[0].fandoms
+      fandomprint = 'fandoms: ' + ' | '.join(workexample)
 
-  print(titleprint.encode(encoding='ascii', errors='replace'))
-  print('word count: ' + str(worklist.word_count))
-  print(fandomprint.encode(encoding='ascii', errors='replace')) #this is necessary to handle katakana
-  print('url: '+ url, flush=True)
+      print(titleprint.encode(encoding='ascii', errors='replace')[2:-1])
+      print('word count: ' + str(worklist.word_count))
+      print(fandomprint.encode(encoding='ascii', errors='replace')[2:-1]) #this is necessary to handle katakana
+      print('url: '+ url, flush=True)
+  except AttributeError:
+      print('girl help, something went wrong')
   print('')
 
 ao3_session = AO3.Session(username, password) #get a session object compatable with the AO3 library
