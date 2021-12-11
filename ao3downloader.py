@@ -22,21 +22,36 @@ metadata_q = (raw_metadata_q == 'y')
 delay_every_10 = 0
 delay_every_100 = 0
 
-delay_enabled = input("Would you like to add a pause every 10 seconds + every 100 seconds? this might be useful if you get a rate limited error.\nif you are retreving metadata, this is needed")
+delay_enabled = input("Would you like to add a pause every 10 seconds + every 100 seconds? this might be useful if you get a rate limited error.\nif you are retreving metadata, this is needed\n")
 
 if (delay_enabled == 'y'):
     delay_every_10 = int(input("delay every 10 works (in seconds)\n"))
     delay_every_100 = int(input("delay every 100 works (in seconds)\n"))
 
 # a little function to make it easier to print metadata later
-def print_with_metadata(url, metadata, workid):
+def print_with_metadata_works(url, metadata, workid):
   titleprint = 'title: ' + metadata['title']
   #TODO add a print statement for the fandom
-  fandomprint = 'fandoms: ' + ' '.join(AO3.Work(workid, session=ao3_session, load_chapters=False).fandoms)
+  work = AO3.Work(workid, session=ao3_session, load_chapters=False)
+  fandomprint = 'fandoms: ' + ' | '.join(work.fandoms)
 
-  print(titleprint.encode(encoding='utf-8', errors='replace'))
-  print(fandomprint.encode(encoding='utf-8', errors='replace')) #this is necessary to handle katakana
-  print('url: '+ url)
+  print(titleprint.encode(encoding='ascii', errors='replace'))
+  print("word count: " + str(work.words))
+  print(fandomprint.encode(encoding='ascii', errors='replace')) #this is necessary to handle katakana
+  print('url: '+ url, flush=True)
+  print('')
+
+def print_with_metadata_series(url, metadata, seriesid):
+  titleprint = 'title: ' + metadata['title']
+   #TODO add a print statement for the fandom
+  worklist = AO3.Series(seriesid, session=ao3_session, load=False).work_list
+  workexample = worklist[0].fandoms
+  fandomprint = 'fandoms: ' + ' | '.join(workexample)
+
+  print(titleprint.encode(encoding='ascii', errors='replace'))
+  print('word count: ' + str(worklist.word_count))
+  print(fandomprint.encode(encoding='ascii', errors='replace')) #this is necessary to handle katakana
+  print('url: '+ url, flush=True)
   print('')
 
 ao3_session = AO3.Session(username, password) #get a session object compatable with the AO3 library
@@ -73,7 +88,7 @@ if (password != ''):
     print("Logged in!")
 
 #actually grab all the bookmarks!
-print('fetching urls')
+print('fetching urls', flush=True)
 number_urls = 0
 
 # finds things that look like
@@ -105,7 +120,7 @@ while not end:
         #TODO update htis line to support printing the fandom
 
       #Match[0] is a WorkID
-      print_with_metadata('http://archiveofourown.org/works/' + match[0], {'title': match[1]}, match[0])
+      print_with_metadata_works('http://archiveofourown.org/works/' + match[0], {'title': match[1]}, match[0])
     else:
       print('http://archiveofourown.org/works/' + match[0])
     number_urls += 1
@@ -114,7 +129,7 @@ while not end:
     for match_s in matches_s:
       if metadata_q:
           #TODO update this line to support pringint the fandom
-        print_with_metadata('http://archiveofourown.org/series/' + match_s[0], {'title': match_s[1]}, match[0])
+        print_with_metadata_series('http://archiveofourown.org/series/' + match_s[0], {'title': match_s[1]}, match[0])
       else:
         print('http://archiveofourown.org/series/' + match_s[0])
       number_urls += 1

@@ -1,6 +1,6 @@
 # AO3 Bookmark Getter
 
-This python script is able to provide you with a list of links to every bookmark you have on [Archive Of Our Own](https://archiveofourown.org), as well as the title of the work and the fandom if desired. The script is continuously updated - [shoot me a DM on twitter](https://twitter.com/syrtis_) if you have a question or feature request.
+This python script is able to provide you with a list of links to every bookmark you have on [Archive Of Our Own](https://archiveofourown.org), as well as the title of the work, word count, and the fandom if desired. The script is continuously updated - [shoot me a DM on twitter](https://twitter.com/syrtis_) if you have a question or feature request.
 
 ## That's great, but what is this useful for?
 
@@ -43,7 +43,7 @@ On Windows, run the command `python ao3downloader.py username password` where yo
 
 (If you just want your public bookmarks, don't type your password, and it won't log you in to fetch the private ones)
 
-It will prompt you to ask if you would like to include series and if you would like metadata to be printed in addition to URLs. If you want to import URLs into calibre, don't get titles- you just want a list of URLs. If you are using some other tool, the metadata might be helpful. The metadata includes the title and the list of fandoms - any non utf-8 characters (think katakana) are replaced with a ?.
+It will prompt you to ask if you would like to include series and if you would like metadata to be printed in addition to URLs. If you want to import URLs into calibre, don't get titles- you just want a list of URLs. If you are using some other tool, the metadata might be helpful. The metadata includes the title, word count, and the list of fandoms - any non utf-8 characters (think katakana) are replaced with a ?.
 
 **If you select that you would like to include metadata, it will take significantly longer, and may even give you a warning. This is normal -- just leave it alone for a while. In the future, I want to rewrite the script so it doesn't take the absurd amount of time it currently does when printing with metadata**
 
