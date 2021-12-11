@@ -20,12 +20,12 @@ This is installed by default with MacOS, but I would recommend installing the la
 
 If you're using Windows you will definitely need to install Python 3 to be able to use this.
 
-### Install "Requests" and "AO3" module
+### Install "Requests" and "AO3" packages
 Open up your terminal.
 
-On Mac, type `pip3 install requests ` and hit enter to install the requests module. Wait a second or two for it to finish. Type `pip3 install ao3_api ` and hit enter to install the ao3 api module.
+On Mac, type `pip3 install requests ` and hit enter to install the requests package. Wait a second or two for it to finish. Type `pip3 install ao3_api ` and hit enter to install the ao3 api package.
 
-On Windows, type `python pip install requests` to install it. Wait a second or two for it to finish. Type `python pip install ao3_api ` and hit enter to install the ao3 api module.
+On Windows, type `python pip install requests` to install the requests package. Wait a second or two for it to finish. Type `python pip install ao3_api ` and hit enter to install the ao3 api package.
 
 ### Install SSL certificates (Mac Only)
 
