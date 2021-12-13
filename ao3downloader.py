@@ -28,17 +28,26 @@ if (delay_enabled == 'y'):
     delay_every_10 = int(input("delay every 10 works (in seconds)\n"))
     delay_every_100 = int(input("delay every 100 works (in seconds)\n"))
 
+def encode_decode(input_string):
+    #this function encodes and then decodes an input string. it does this to get rid of katakana and other non ascii characters that cause problems if not handled
+    #encoding turns things into bytes or something, decoding turns things back into python strings.
+    #i'm using ascii as the encoding mode because UTF-8 gave me an error for some reason
+
+    input_string = input_string.encode(encoding='ascii', errors='replace')
+
+    return input_string.decode(encoding='ascii', errors='replace')
+
 # a little function to make it easier to print metadata later
 def print_with_metadata_works(url, metadata, workid):
   titleprint = 'title: ' + metadata['title']
   #TODO add a print statement for the fandom
   try:
     work = AO3.Work(workid, session=ao3_session, load_chapters=False)
-    fandomprint = 'fandoms: ' + ' | '.join(work.fandoms)
+    fandomprint = "fandoms:"  + ' | '.join(work.fandoms)
 
-    print(titleprint.encode(encoding='ascii', errors='replace')[2:-1]) #the [2:] is to slice off a bit that is added when you encode a string.
+    print(encode_decode(titleprint)) #decode to turn the bytes back into a python string
     print("word count: " + str(work.words))
-    print(fandomprint.encode(encoding='ascii', errors='replace')[2:-1]) #this is necessary to handle katakana
+    print(encode_decode(fandomprint)) #decode to turn the bytes back into a python string
     print('url: '+ url, flush=True)
   except AttributeError:
     print('girl help, something went wrong')
@@ -53,9 +62,9 @@ def print_with_metadata_series(url, metadata, seriesid):
       workexample = worklist[0].fandoms
       fandomprint = 'fandoms: ' + ' | '.join(workexample)
 
-      print(titleprint.encode(encoding='ascii', errors='replace')[2:-1])
+      print(encode_decode(titleprint))
       print('word count: ' + str(worklist.word_count))
-      print(fandomprint.encode(encoding='ascii', errors='replace')[2:-1]) #this is necessary to handle katakana
+      print(encode_decode(fandomprint))
       print('url: '+ url, flush=True)
   except AttributeError:
       print('girl help, something went wrong')
